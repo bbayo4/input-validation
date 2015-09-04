@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Demo - Job test Requirement</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="demo.css" media="all" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<!--JQuery date picker and validation-->
+<script>
+  $(function(){
+        $("#dob").datepicker({
+              changeMonth: true, maxDate: '0',changeYear: true, yearRange: '1865:2015', dateFormat: 'dd/mm/yy',
+              onClose: function(){
+                  var today = new Date(), 
+                  bday = $('#dob').datepicker("getDate"),
+                  age = ((today.getMonth() > bday.getMonth())||(today.getMonth() == bday.getMonth() && today.getDate() >= 
+                  bday.getDate())) ? today.getFullYear() - bday.getFullYear() : today.getFullYear() - bday.getFullYear()-1;
+                  if(age>=14){
+                      alert('You are legeal! Go to go.');
+                  }else{
+                      alert('You must be atleast 14 years old');
+                  }
+              }
+        });
+  });
+</script>
+</head>
+<body>
+<div class="container">  
+      <div  class="form">
+    		<form id="signUpform" name="signup"> 
+          <p class="signUp"><label for="username">Username</label></p> 
+          <input id="username" name="username" placeholder="example@shadownet.com" required="" tabindex="1" type="email" onblur="validate_username();"> 
+           
+          <p class="signUp"><label for="password">Create a password</label></p> 
+          <input type="password" id="password" name="password" placeholder="Create Password" required="" tabindex="2"> 
+
+          <p class="signUp"><label for="repassword">Confirm your password</label></p> 
+          <input type="password" id="repassword" name="repassword" placeholder="Repeat Password" required="" tabindex="3" onblur="validate_pswd();"> 
+
+    			<p class="signUp"><label for="name">First Name</label></p> 
+    			<input id="name" name="name" placeholder="Enter Firstname" required="" tabindex="4" type="text" onblur="validate_fname();"> 
+
+          <p class="signUp"><label for="lname">Last Name</label></p> 
+          <input id="lname" name="lname" placeholder="Enter Lastname" required="" tabindex="5" type="text"> 
+    			 
+          <p class="signUp"><label for="dob">Date of Birth</label></p> 
+          <input id="dob" name="dob" required="" type="date" tabindex="6"> <br>
+
+          <input class="button" name="submit" id="submit" tabindex="7" value="Sign up!" type="submit"> 	 
+       </form> 
+    </div>      
+</div>
+
+</body>
+<script src="validation.js"></script>
+</html>
